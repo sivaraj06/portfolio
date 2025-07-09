@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIVARAJ M - Advanced Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Hide default cursor and style custom cursor */
+        body {
+            cursor: none; /* Hide default cursor */
+        }
+
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+            border-radius: 50%;
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 9999;
+            transform: translate(-50%, -50%); /* Center the cursor */
+            transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
+        }
+
+        #custom-cursor.cursor-active {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-emerald-500); /* Accent color on hover */
+        }
+
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* Dark track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6b7280; /* Gray thumb */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; /* Darker gray on hover */
+        }
+
+        /* Custom accent color for Tailwind */
+        :root {
+            --color-emerald-500: #10b981; /* Tailwind's emerald-500 */
+            --color-emerald-600: #059669; /* Tailwind's emerald-600 */
+        }
+        .accent-bg { background-color: var(--color-emerald-500); }
+        .accent-text { color: var(--color-emerald-500); }
+        .accent-border { border-color: var(--color-emerald-500); }
+        .hover\:accent-bg:hover { background-color: var(--color-emerald-600); }
+        .hover\:accent-text:hover { color: var(--color-emerald-600); }
+        .hover\:accent-border:hover { border-color: var(--color-emerald-600); }
+
+        /* Custom animations for scroll reveal */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+
+        /* Parallax effect for hero background layers */
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform; /* Optimize for animation */
+        }
+        .parallax-layer-1 { background-image: url('/placeholder.svg?height=1080&width=1920'); opacity: 0.05; }
+        .parallax-layer-2 { background-image: url('/placeholder.svg?height=1080&width=1920'); opacity: 0.03; transform: scale(1.05); } /* Slightly different scale */
+        .parallax-layer-3 { background-image: url('/placeholder.svg?height=1080&width=1920'); opacity: 0.02; transform: scale(1.1); } /* Even more different scale */
+
+        /* Hero section gradient */
+        #hero {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #1a202c 100%);
+        }
+        /* Contact section gradient */
+        #contact {
+            background: linear-gradient(45deg, #1a202c 0%, #059669 50%, #1a202c 100%);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-900 text-gray-100 leading-relaxed antialiased">
+
+    <!-- Custom Cursor Element -->
+    <div id="custom-cursor"></div>
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 shadow-lg sticky top-0 z-50 border-b border-gray-700">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-extrabold text-gray-50 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-house-chimney mr-2"></i>SIVARAJ M</a>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#about" class="text-gray-300 hover:accent-text transition-colors duration-300 font-medium text-lg" data-cursor-hover><i class="fa-solid fa-user mr-1"></i>About</a></li>
+                <li><a href="#education" class="text-gray-300 hover:accent-text transition-colors duration-300 font-medium text-lg" data-cursor-hover><i class="fa-solid fa-graduation-cap mr-1"></i>Education</a></li>
+                <li><a href="#skills" class="text-gray-300 hover:accent-text transition-colors duration-300 font-medium text-lg" data-cursor-hover><i class="fa-solid fa-code mr-1"></i>Skills</a></li>
+                <li><a href="#experience" class="text-gray-300 hover:accent-text transition-colors duration-300 font-medium text-lg" data-cursor-hover><i class="fa-solid fa-briefcase mr-1"></i>Experience</a></li>
+                <li><a href="#projects" class="text-gray-300 hover:accent-text transition-colors duration-300 font-medium text-lg" data-cursor-hover><i class="fa-solid fa-folder-open mr-1"></i>Projects</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:accent-text transition-colors duration-300 font-medium text-lg" data-cursor-hover><i class="fa-solid fa-envelope mr-1"></i>Contact</a></li>
+            </ul>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button class="md:hidden text-gray-300 focus:outline-none hover:text-white transition-colors duration-300" aria-label="Open menu" data-cursor-hover>
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="hidden md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex items-center justify-center">
+            <button class="absolute top-4 right-4 text-gray-300 hover:text-white text-4xl" aria-label="Close menu" data-cursor-hover>&times;</button>
+            <ul class="flex flex-col space-y-8 text-center text-3xl font-bold">
+                <li><a href="#about" class="text-gray-300 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-user mr-2"></i>About</a></li>
+                <li><a href="#education" class="text-gray-300 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-graduation-cap mr-2"></i>Education</a></li>
+                <li><a href="#skills" class="text-gray-300 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-code mr-2"></i>Skills</a></li>
+                <li><a href="#experience" class="text-gray-300 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-briefcase mr-2"></i>Experience</a></li>
+                <li><a href="#projects" class="text-gray-300 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-folder-open mr-2"></i>Projects</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:accent-text transition-colors duration-300" data-cursor-hover><i class="fa-solid fa-envelope mr-2"></i>Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+            <!-- Parallax Background Layers -->
+            <div class="parallax-layer parallax-layer-1" data-speed="-0.1"></div>
+            <div class="parallax-layer parallax-layer-2" data-speed="-0.2"></div>
+            <div class="parallax-layer parallax-layer-3" data-speed="-0.3"></div>
+
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <img src="/profile.jpg?height=300&width=200" alt="Sivaraj M Profile" class="profile-pic rounded-full w-48 h-48 mx-auto mb-8 border-4 border-emerald-500 ring-4 ring-emerald-500 ring-offset-4 ring-offset-gray-900 shadow-emerald-500/50 shadow-lg object-cover transition-transform duration-500 hover:scale-105 animate-on-scroll" data-speed="0.1">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 text-gray-50 animate-on-scroll delay-100" data-speed="0.05">SIVARAJ M</h1>
+                <p class="text-2xl md:text-3xl font-light mb-8 text-gray-300 animate-on-scroll delay-200" data-speed="0.03">Aspiring Software Engineer</p>
+                <div class="mt-12 space-x-4 animate-on-scroll delay-400">
+                    <a href="#contact" class="inline-block accent-bg text-gray-900 px-10 py-4 rounded-full text-xl font-semibold shadow-lg hover:shadow-xl hover:accent-bg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105" data-cursor-hover><i class="fa-solid fa-handshake mr-2"></i>Get in Touch</a>
+                    <a href="#projects" class="inline-block border-2 border-emerald-500 text-emerald-500 px-10 py-4 rounded-full text-xl font-semibold shadow-lg hover:bg-emerald-500 hover:text-gray-900 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105" data-cursor-hover><i class="fa-solid fa-rocket mr-2"></i>View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-circle-info mr-3 accent-text"></i>About Me</h2>
+                <div class="grid md:grid-cols-1 gap-16 items-center">
+                    <!-- About Me Card -->
+                    <div class="bg-gray-900 p-12 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
+                        <p class="text-lg leading-relaxed text-gray-300 space-y-8">
+                            <p>
+                                As a dedicated Computer Science and Engineering student at Bannari Amman Institute of Technology, I am passionate about leveraging technology to solve real-world problems. My academic journey has equipped me with a strong foundation in web technologies, programming languages, and database management.
+                            </p>
+                            <p>
+                                I thrive in environments that encourage continuous learning and collaboration.My internship at Infiniti Software Solutions have honed my skills in building dynamic web applications and working effectively within a team.
+                            </p>
+                            <p>
+                                Beyond academics, I am an active NSS volunteer and enjoy creative pursuits like clay crafting and painting. I am eager to contribute my skills and enthusiasm to a forward-thinking organization.
+                            </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 md:py-32 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-user-graduate mr-3 accent-text"></i>Education</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- BIT -->
+                    <div class="bg-gray-800 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
+                        <h3 class="text-3xl font-semibold mb-3 text-gray-50">B.E Computer Science and Engineering</h3>
+                        <p class="text-gray-400 mb-2">Bannari Amman Institute of Technology</p>
+                        <p class="text-gray-500 text-sm mb-4">2021 - 2025</p>
+                        <p class="text-gray-300 text-lg"><i class="fa-solid fa-star mr-2 accent-text"></i>CGPA: 8.34</p>
+                    </div>
+                    <!-- HSC -->
+                    <div class="bg-gray-800 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 accent-border animate-on-scroll delay-200" data-cursor-hover>
+                        <h3 class="text-3xl font-semibold mb-3 text-gray-50">HSC</h3>
+                        <p class="text-gray-400 mb-2">Saraswathi Vidhyashram Matric Higher Secondary School</p>
+                        <p class="text-gray-500 text-sm mb-4">2021</p>
+                        <p class="text-gray-300 text-lg"><i class="fa-solid fa-percent mr-2 accent-text"></i>Percentage: 94.785%</p>
+                    </div>
+                    <!-- SSLC -->
+                    <div class="bg-gray-800 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 accent-border animate-on-scroll delay-300" data-cursor-hover>
+                        <h3 class="text-3xl font-semibold mb-3 text-gray-50">SSLC</h3>
+                        <p class="text-gray-400 mb-2">Saraswathi Vidhyashram Matric Higher Secondary School</p>
+                        <p class="text-gray-500 text-sm mb-4">2019</p>
+                        <p class="text-gray-300 text-lg"><i class="fa-solid fa-percent mr-2 accent-text"></i>Percentage: 91.6%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-laptop-code mr-3 accent-text"></i>Technical Skills & Interests</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Web Technology -->
+                    <div class="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-globe mr-2 accent-text"></i>Web Technology</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">HTML</span>
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">CSS</span>
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">PHP</span>
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">MySQL</span>
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">Bootstrap</span>
+                        </div>
+                    </div>
+                    <!-- Programming Languages -->
+                    <div class="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 accent-border animate-on-scroll delay-200" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-terminal mr-2 accent-text"></i>Programming Languages</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">C</span>
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">Python</span>
+                        </div>
+                    </div>
+                    <!-- Databases -->
+                    <div class="bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 accent-border animate-on-scroll delay-300" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-database mr-2 accent-text"></i>Databases</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-emerald-500 text-gray-900 px-4 py-2 rounded-full text-sm font-medium shadow-md">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-briefcase mr-3 accent-text"></i>Experience</h2>
+                <div class="max-w-4xl mx-auto bg-gray-800 p-12 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
+                    <h3 class="text-3xl font-semibold mb-4 text-gray-50">Internship - Infiniti Software Solutions</h3>
+                    <p class="text-gray-400 mb-6 text-lg"><i class="fa-solid fa-calendar-days mr-2"></i>Mar 2025</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-3 text-lg">
+                        <li><i class="fa-solid fa-check-circle mr-2 accent-text"></i>Worked with PHP and MySQL to develop backend functionalities.</li>
+                        <li><i class="fa-solid fa-check-circle mr-2 accent-text"></i>Built a dynamic flight portal where users can view, filter, and book flights.</li>
+                        <li><i class="fa-solid fa-check-circle mr-2 accent-text"></i>Gained practical experience in full-stack web development and database interaction.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32 bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-lightbulb mr-3 accent-text"></i>Projects & Patents</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Event Management Project -->
+                    <div class="bg-gray-900 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-calendar-check mr-2 accent-text"></i>Event Management Web Application</h3>
+                        <p class="text-gray-400 mb-4 text-lg">Duration: 3 months</p>
+                        <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                            Developed a dynamic web application for listing and managing events. The platform allows users to view, book, and filter events based on category, date, location, and availability.
+                        </p>
+                        <p class="text-emerald-400 font-medium text-lg"><i class="fa-solid fa-tools mr-2"></i>Technologies: PHP, MySQL, HTML, CSS, Bootstrap</p>
+                    </div>
+                    <!-- AI Based App for Personalized Medicine (Patent) -->
+                    <div class="bg-gray-900 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 accent-border animate-on-scroll delay-200" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-flask-vial mr-2 accent-text"></i>AI Based App for Personalized Medicine <span class="text-base font-normal text-gray-400">(Patent)</span></h3>
+                        <p class="text-gray-400 mb-4 text-lg"><i class="fa-solid fa-certificate mr-2"></i>Status: Patent Filed</p>
+                        <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                            This invention aims to create a personalized medicine application focusing on precision medicine based on patients' body condition and genomics. The application reduces trial and error by finding the best medicine for each individual.
+                        </p>
+                        <p class="text-emerald-400 font-medium text-lg"><i class="fa-solid fa-tools mr-2"></i>Technologies: Python, Android Studio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Details Section (Training, Achievements, Hobbies, Personal Info) -->
+        <section id="other-details" class="py-20 md:py-32 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-ellipsis-h mr-3 accent-text"></i>More About Me</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Training -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-on-scroll delay-100" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-chalkboard-user mr-2 accent-text"></i>Training</h3>
+                        <p class="text-gray-300 mb-2 text-lg">Bannari Amman Institute of Technology</p>
+                        <p class="text-gray-400 text-base mb-2">Student/Skill Trainer</p>
+                        <p class="text-gray-300 text-lg">Mentoring a class of 60 students in Web Technology.</p>
+                    </div>
+                    <!-- Achievements & Extra-curricular -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-on-scroll delay-200" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-trophy mr-2 accent-text"></i>Achievements & Activities</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-3 text-lg">
+                            <li><i class="fa-solid fa-hands-helping mr-2 accent-text"></i>Active member of NSS volunteering activities.</li>
+                            <li><i class="fa-solid fa-medal mr-2 accent-text"></i>Participated in state level drawing competition and won medals.</li>
+                        </ul>
+                    </div>
+                    <!-- Hobbies -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-on-scroll delay-300" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-50"><i class="fa-solid fa-palette mr-2 accent-text"></i>Hobbies</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-3 text-lg">
+                            <li><i class="fa-solid fa-hand-sparkles mr-2 accent-text"></i>Clay Crafting</li>
+                            <li><i class="fa-solid fa-paint-brush mr-2 accent-text"></i>Painting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 animate-on-scroll"><i class="fa-solid fa-headset mr-3 accent-text"></i>Get in Touch</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                    <div class="bg-gray-800 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-100" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-at mr-2"></i>Email</h3>
+                        <p class="text-gray-300 mb-6 text-lg">sivarajmadheshwaran@gmail.com</p>
+                        <a href="mailto:sivaraj.cs21@bitsathy.ac.in" class="inline-block accent-bg text-gray-900 px-8 py-3 rounded-full text-lg font-semibold hover:accent-bg transition-colors duration-300 shadow-md" data-cursor-hover><i class="fa-solid fa-paper-plane mr-2"></i>Send Email</a>
+                    </div>
+                    <div class="bg-gray-800 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-200" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-phone mr-2"></i>Phone & Address</h3>
+                        <p class="text-gray-300 mb-3 text-lg">9345337383</p>
+                        <p class="text-gray-300 text-lg"><i class="fa-solid fa-location-dot mr-2"></i>48, EIT Road, Kavindhapadi, Erode 638455</p>
+                    </div>
+                    <div class="bg-gray-800 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-300" data-cursor-hover>
+                        <h3 class="text-2xl font-semibold mb-4"><i class="fa-solid fa-share-nodes mr-2"></i>Connect Online</h3>
+                        <div class="flex justify-center space-x-6 mt-6">
+                            <a href="https://linkedin.com/in/sivaraj-m21/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:accent-text transition-colors duration-300 text-4xl" aria-label="LinkedIn" data-cursor-hover>
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/sivaraj06" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:accent-text transition-colors duration-300 text-4xl" aria-label="GitHub" data-cursor-hover>
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-6">Click icons to visit profiles</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-500 py-10 text-center border-t border-gray-700">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 SIVARAJ M. All rights reserved.</p>
+            <p class="text-sm mt-3">Crafted with HTML, Tailwind CSS, and a touch of JavaScript magic.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle, Scroll Animations, and Custom Cursor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.querySelector('header button[aria-label="Open menu"]');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const closeMenuButton = mobileMenuOverlay.querySelector('button[aria-label="Close menu"]');
+            const mobileNavLinks = mobileMenuOverlay.querySelectorAll('a');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            });
+
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.add('hidden');
+                    document.body.style.overflow = ''; // Restore scrolling
+                });
+            });
+
+            // Scroll Animations (Intersection Observer)
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Adjust when element is 50px from bottom of viewport
+            });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Custom Cursor Effects
+            const customCursor = document.getElementById('custom-cursor');
+            const interactiveElements = document.querySelectorAll('a, button, [data-cursor-hover]');
+
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.1; // Smoothly move cursor towards mouseX
+                cursorY += (mouseY - cursorY) * 0.1; // Smoothly move cursor towards mouseY
+                customCursor.style.left = `${cursorX}px`;
+                customCursor.style.top = `${cursorY}px`;
+                requestAnimationFrame(animateCursor);
+            }
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    customCursor.classList.add('cursor-active');
+                });
+                element.addEventListener('mouseleave', () => {
+                    customCursor.classList.remove('cursor-active');
+                });
+            });
+
+            animateCursor(); // Start the cursor animation loop
+
+            // 3D Parallax Effect for Hero Section
+            const heroSection = document.getElementById('hero');
+            const parallaxLayers = heroSection.querySelectorAll('.parallax-layer');
+            const heroContentElements = heroSection.querySelectorAll('[data-speed]'); // Elements within hero content
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                // Parallax for background layers
+                parallaxLayers.forEach(layer => {
+                    const speed = parseFloat(layer.dataset.speed);
+                    const yPos = scrollY * speed;
+                    layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+
+                // Parallax for foreground content (profile pic, h1, p)
+                heroContentElements.forEach(element => {
+                    const speed = parseFloat(element.dataset.speed);
+                    const yPos = scrollY * speed;
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
