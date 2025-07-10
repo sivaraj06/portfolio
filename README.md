@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h1 align="left">Hi👋 I'm Sivaraj M</h1>
 
 ###
