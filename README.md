@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="left">Hi👋 I'm Sivaraj M</h1>
 
 ###
@@ -31,3 +32,6 @@
 </div>
 
 ###
+=======
+# portfolio
+>>>>>>> 9ef1bd9068b8472dac70c4afc361fe72043a7ddd
