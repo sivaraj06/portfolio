@@ -149,7 +149,7 @@
             <div class="container mx-auto px-4 text-center relative z-10">
                 <img src="/profile.jpg?height=300&width=200" alt="Sivaraj M Profile" class="profile-pic rounded-full w-48 h-48 mx-auto mb-8 border-4 border-emerald-500 ring-4 ring-emerald-500 ring-offset-4 ring-offset-gray-900 shadow-emerald-500/50 shadow-lg object-cover transition-transform duration-500 hover:scale-105 animate-on-scroll" data-speed="0.1">
                 <h1 class="text-5xl md:text-7xl font-extrabold mb-4 text-gray-50 animate-on-scroll delay-100" data-speed="0.05">SIVARAJ M</h1>
-                <p class="text-2xl md:text-3xl font-light mb-8 text-gray-300 animate-on-scroll delay-200" data-speed="0.03">Aspiring Software Engineer</p>
+                <p class="text-2xl md:text-3xl font-light mb-8 text-gray-300 animate-on-scroll delay-200" data-speed="0.03">Software Engineer</p>
                 <div class="mt-12 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 animate-on-scroll delay-400 items-center justify-center">
                     <a href="#contact" class="inline-block accent-bg text-gray-900 px-10 py-4 rounded-full text-xl font-semibold shadow-lg hover:shadow-xl hover:accent-bg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 w-full sm:w-auto text-center" data-cursor-hover>
                         <i class="fa-solid fa-handshake mr-2"></i>Get in Touch
@@ -175,7 +175,7 @@
                             </p>
                             
                             <p>
-                                During my experience at Infiniti Software Solutions, I worked on an airline revenue management system where I developed reporting modules, built REST APIs, and handled large datasets using optimized SQL queries and Pandas.
+                                During my experience at Infiniti Software Solutions, I worked on an airline group revenue management system where I developed reporting modules, built REST APIs, and handled large datasets using optimized SQL queries and Pandas.
                             </p>
                             
                             <p>
@@ -278,7 +278,7 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-briefcase mr-3 accent-text"></i>Experience</h2>
                 <div class="max-w-4xl mx-auto bg-gray-800 p-12 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
                     <h3 class="text-3xl font-semibold mb-4 text-gray-50">Software Trainee - Infiniti Software Solutions</h3>
-                    <p class="text-gray-400 mb-6 text-lg">July 2025 – Present (8 Months)</p>
+                    <p class="text-gray-400 mb-6 text-lg">July 2025 – Present</p>
 
                     <ul class="list-disc list-inside text-gray-300 space-y-3 text-lg">
                         <li>Worked on GroupRM (Group Revenue Management) product used by airlines.</li>
@@ -306,7 +306,7 @@
         <!-- Projects Section -->
         <section id="projects" class="py-20 md:py-32 bg-gray-800">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-lightbulb mr-3 accent-text"></i>Projects & Patents</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-50 animate-on-scroll"><i class="fa-solid fa-lightbulb mr-3 accent-text"></i>Projects</h2>
                 <div class="grid md:grid-cols-2 gap-12">
                     <!-- Event Management Project -->
                     <div class="bg-gray-900 p-10 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 accent-border animate-on-scroll delay-100" data-cursor-hover>
@@ -435,7 +435,7 @@
     <!-- Footer -->
     <footer class="bg-gray-950 text-gray-500 py-10 text-center border-t border-gray-700">
         <div class="container mx-auto px-4">
-            <p>&copy; 2025 SIVARAJ M. All rights reserved.</p>
+            <p>&copy; <span id="year"></span> SIVARAJ M. All rights reserved.</p>
             <p class="text-sm mt-3">Crafted with HTML, Tailwind CSS, and a touch of JavaScript magic.</p>
         </div>
     </footer>
@@ -517,7 +517,12 @@
             });
 
             animateCursor(); // Start the cursor animation loop
-
+            document.addEventListener('DOMContentLoaded', () => {
+            
+                // Dynamic Year
+                document.getElementById("year").textContent = new Date().getFullYear();
+            
+            });
             // 3D Parallax Effect for Hero Section
             const heroSection = document.getElementById('hero');
             const parallaxLayers = heroSection.querySelectorAll('.parallax-layer');
